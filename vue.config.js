@@ -10,7 +10,7 @@ function resolve(dir) {
 }
 
 module.exports = {
-  publicPath: '/',
+  publicPath: './',
   outputDir: 'dist',
   assetsDir: 'assets',
   // eslint-loader 是否在保存的时候检查
