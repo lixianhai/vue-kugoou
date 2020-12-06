@@ -8,3 +8,11 @@ export function plistList() {
     method: 'get'
   })
 }
+
+// 歌单列表详情
+export function plistInfo(specialid) {
+  return request({
+    url: `${server_root}/plist/list/${specialid}?json=true`,
+    method: 'get'
+  })
+}

@@ -5,6 +5,7 @@
         v-for="item in singerList"
         :key="item.classid"
         :style="{'margin-top':item.ismargin ? '20px': '0'}"
+        @click="goInfo(item)"
       >
         <div>{{ item.classname }}</div>
         <van-icon name="arrow" />
@@ -31,13 +32,24 @@ export default {
     getSingerList() {
       singerList().then(res => {
         this.singerList = res.list.map(item => {
-          const name = item.classname.substr(0, 2)
+          const name = item && item.classname.substr(0, 2)
           if (this.nameList.length && this.nameList.indexOf(name) === -1) {
             item.ismargin = true
           }
           this.nameList.push(name)
           return item
         })
+      })
+    },
+    goInfo(data) {
+      const { classid, classname } = data
+      this.$store.dispatch('settings/changeSetting', {
+        key: 'titleBarText',
+        value: classname
+      })
+      this.$router.push({
+        path: '/singer/info',
+        query: { classid }
       })
     }
   }

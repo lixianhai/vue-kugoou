@@ -22,15 +22,14 @@ export default {
 
     onClickLeft() {
       this.$router.go(-1)
-    },
-
-    onClickRight() {}
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .title-bar {
+  width: 100%;
   height: 60px;
   display: flex;
   align-items: center;
@@ -38,7 +37,10 @@ export default {
   background: -webkit-linear-gradient(top,rgba(0,0,0,.6),rgba(0,0,0,0));
   font-size: 20px;
   color: #fff;
-  position: relative;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  z-index: 9;
   .van-icon {
     font-size: 34px;
     position: absolute;

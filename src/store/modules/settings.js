@@ -1,17 +1,20 @@
 
 const state = {
-  titleBarText: ''
+  titleBarText: '',
+  isLoading: false
 }
 
 const mutations = {
-  SET_TITLE: (state, title) => {
-    state.titleBarText = title
+  CHANGE_SETTING: (state, { key, value }) => {
+    if (state.hasOwnProperty(key)) {
+      state[key] = value
+    }
   }
 }
 
 const actions = {
-  setTitle({ commit }, title) {
-    commit('SET_TITLE', title)
+  changeSetting({ commit }, data) {
+    commit('CHANGE_SETTING', data)
   }
 }
 

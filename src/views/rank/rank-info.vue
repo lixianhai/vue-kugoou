@@ -82,7 +82,7 @@ export default {
   padding-left: 15px;
   li {
     min-height: 80px;
-    padding: 20px 15px 20px 0;
+    padding: 20px 15px 20px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;

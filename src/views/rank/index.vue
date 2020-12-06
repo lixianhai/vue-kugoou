@@ -40,7 +40,10 @@ export default {
 
     goRankInfo(row) {
       const { rankid, rankname } = row
-      this.$store.dispatch('settings/setTitle', rankname)
+      this.$store.dispatch('settings/changeSetting', {
+        key: 'titleBarText',
+        value: rankname
+      })
       this.$router.push({
         path: '/rank/info',
         query: { id: rankid }

@@ -1,14 +1,13 @@
 <template>
   <div class="app-wrapper">
+    <LoadingPage v-show="isLoading" />
     <div class="fixed-top">
       <SearchBar />
       <Navbar v-if="isNavbar" />
-      <Titlebar v-if="!isNavbar" />
+      <Titlebar v-if="isTitle" />
     </div>
-    <div class="main-container" :style="{'padding-bottom':isGoplay ? '2.09rem': '0','padding-top':isNavbar ? '3.2rem' : '1.7rem'}">
-      <!-- <keep-alive :include="whiteList"> -->
+    <div class="main-container" :style="{'padding-bottom':paddingBottom,'padding-top':paddingTop}">
       <router-view :key="key" />
-      <!-- </keep-alive> -->
     </div>
     <div class="fixed-bottom">
       <Goplay v-if="isGoplay" />
@@ -21,30 +20,50 @@ import SearchBar from '@/components/SearchBar'
 import Titlebar from '@/components/Titlebar'
 import Navbar from '@/components/Navbar'
 import Goplay from '@/components/Goplay'
+import LoadingPage from '@/components/LoadingPage'
+
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
     SearchBar,
     Titlebar,
     Navbar,
-    Goplay
+    Goplay,
+    LoadingPage
   },
   computed: {
+    ...mapGetters([
+      'isLoading'
+    ]),
     key() {
       return this.$route.path
     },
     isTitle() {
-      return this.$route.meta && this.$route.meta.title
+      return this.$route.meta && this.$route.meta.isTitle
     },
     whiteList() {
       return this.$route.meta && this.$route.meta.keepAlive
     },
     isNavbar() {
-      console.log(this.$route)
       return this.$route.meta && this.$route.meta.isNavbar
     },
     isGoplay() {
       return true
+    },
+    paddingTop() {
+      if (this.$route.meta && this.$route.meta.isNavbar) {
+        return '3.2rem'
+      } else {
+        return '1.7rem'
+      }
+    },
+    paddingBottom() {
+      if (this.isGoplay) {
+        return '2.09rem'
+      } else {
+        return '0'
+      }
     }
   }
 }

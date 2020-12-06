@@ -58,7 +58,7 @@ const routes = [
       component: () => import('@/views/newsong/index'),
       name: 'newsong',
       meta: {
-        title: '首页',
+        title: '新歌',
         isNavbar: true
       }
     }]
@@ -82,7 +82,8 @@ const routes = [
         component: () => import('@/views/rank/rank-info'),
         name: 'RankInfo',
         meta: {
-          title: '排行分类'
+          title: '排行分类',
+          isTitle: true
         }
       }
     ]
@@ -91,29 +92,54 @@ const routes = [
     path: '/plist',
     component: Layout,
     redirect: '/plist/index',
-    children: [{
-      path: '/plist',
-      component: () => import('@/views/plist/index'),
-      name: 'plist',
-      meta: {
-        title: '歌单',
-        isNavbar: true
+    children: [
+      {
+        path: '/plist',
+        component: () => import('@/views/plist/index'),
+        name: 'plist',
+        meta: {
+          title: '歌单',
+          isNavbar: true
+        }
+      },
+      {
+        path: '/plist/info',
+        component: () => import('@/views/plist/plist-info'),
+        name: 'PlistInfo',
+        meta: {
+          title: '歌单详情',
+          isTitle: true
+        }
       }
-    }]
+    ]
   },
   {
     path: '/singer',
     component: Layout,
     redirect: '/singer/index',
-    children: [{
-      path: '/singer',
-      component: () => import('@/views/singer/index'),
-      name: 'Singer',
-      meta: {
-        title: '歌手',
-        isNavbar: true
+    children: [
+      {
+        path: '/singer',
+        component: () => import('@/views/singer/index'),
+        name: 'Singer',
+        meta: {
+          title: '歌手',
+          isNavbar: true
+        }
+      },
+      {
+        path: '/singer/info',
+        component: () => import('@/views/singer/singer-info'),
+        name: 'SingerInfo',
+        meta: {}
+      },
+      {
+        path: '/singer/info/list',
+        component: () => import('@/views/singer/singer-info-list'),
+        name: 'SingerInfoList',
+        meta: {}
       }
-    }]
+    ]
   }
 ]
 

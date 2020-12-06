@@ -8,6 +8,7 @@ import '@/icons' // icon
 
 import 'lib-flexible/flexible'
 import 'vant/lib/index.css'
+import './permission' // permission control
 
 Vue.use(Vant)
 

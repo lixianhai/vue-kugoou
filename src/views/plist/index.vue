@@ -4,10 +4,11 @@
       <li
         v-for="item in plist"
         :key="item.id"
+        @click="goInfo(item)"
       >
         <div class="left">
           <div class="img-wrap">
-            <img :src="item.imgurl.replace('{size}', 400)">
+            <img :src="item.imgurl && item.imgurl.replace('{size}', 400)">
           </div>
           <div class="text">
             <div class="title">{{ item.specialname }}</div>
@@ -42,6 +43,17 @@ export default {
     getPlistList() {
       plistList().then(res => {
         this.plist = res.plist.list.info
+      })
+    },
+    goInfo(data) {
+      const { specialid, specialname } = data
+      this.$store.dispatch('settings/changeSetting', {
+        key: 'titleBarText',
+        value: specialname
+      })
+      this.$router.push({
+        path: '/plist/info',
+        query: { specialid }
       })
     }
   }

@@ -1,6 +1,4 @@
-import defaultSettings from '@/settings'
-
-const title = defaultSettings.title || '阳光商旅云平台'
+const title = 'Music'
 
 export default function getPageTitle(pageTitle) {
   if (pageTitle) {
