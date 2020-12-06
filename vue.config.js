@@ -10,8 +10,10 @@ function resolve(dir) {
 }
 
 module.exports = {
-  publicPath: './',
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   outputDir: 'dist',
+
+
   assetsDir: 'assets',
   // eslint-loader 是否在保存的时候检查
   lintOnSave: process.env.NODE_ENV !== 'production',
