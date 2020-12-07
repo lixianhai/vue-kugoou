@@ -1,9 +1,10 @@
 <template>
   <div class="singer-info-list">
-    <div class="img-wrap" :style="{backgroundImage:'url(' + info.imgurl && info.imgurl + ')'}">
+    <div class="img-wrap" :style="{backgroundImage: 'url('+ background +')'}">
       <!-- <img :src="info.imgurl && info.imgurl.replace('{size}', 400)"> -->
       <div class="name">{{ info.singername }}</div>
-      <div class="num"></div>
+      <div class="num">2.96亿人听过</div>
+      <van-icon name="arrow-left" @click="onClickLeft" />
     </div>
     <ul class="list">
       <div class="singer-player">
@@ -15,8 +16,8 @@
         v-for="item in singerInfoList"
         :key="item.audio_id"
       >
-        <div class="singer-name"></div>
-        <div class="singer"></div>
+        <div class="singer-name">{{ item.filename.split('-')[1] }}</div>
+        <div class="singer">{{ item.filename.split('-')[0] }}</div>
       </li>
     </ul>
   </div>
@@ -40,7 +41,7 @@ export default {
   },
   computed: {
     background() {
-      return `url(${this.info.imgurl && this.info.imgurl.replace('{size}', 400)}) no-repeat center center`
+      return this.info.imgurl && this.info.imgurl.replace('{size}', 400)
     }
   },
   methods: {
@@ -62,43 +63,79 @@ export default {
   width: 100%;
   height: 240px;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center -40px;
+  background-size: cover;
+  position: relative;
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+  }
+  .van-icon {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    font-size: 30px;
+    color: #fff;
+  }
   img {
     width: 100%;
     height: 100%;
-    position: relative;
   }
   .name {
     position: absolute;
+    bottom: 50px;
+    left: 15px;
+    font-size: 30px;
+    color: #fff;
+  }
+  .num {
+    position: absolute;
+    left: 15px;
+    bottom: 25px;
+    font-size: 14px;
+    color: #fff;
   }
 }
 .list {
+  border-radius: 12px;
+  overflow: hidden;
   background: #fff;
+  margin-top: -10px;
+  position: relative;
   .singer-player {
-    padding: 10px 0;
+    padding: 15px;
     border-bottom: 1px solid #e5e5e5;
     display: flex;
     align-items: center;
     img {
       width: 30px;
       height: 30px;
+      margin-right: 5px;
     }
     .text {
-      font-size: 22px;
+      font-size: 18px;
     }
     .num {
       font-size: 14px;
       color: #888;
+      margin-top: 3px;
     }
   }
   li {
-    margin: 10px 0;
+    margin: 0 15px;
+    padding: 15px 0;
     border-bottom: 1px solid #e5e5e5;
     .singer-name {
-      font-size: 20px;
+      font-size: 18px;
     }
     .singer {
-      font-size: 18px;
+      font-size: 14px;
       color: #888;
+      padding-top: 5px;
     }
   }
 }

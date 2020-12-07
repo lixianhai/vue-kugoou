@@ -59,7 +59,22 @@ const routes = [
       name: 'newsong',
       meta: {
         title: '新歌',
+        isSearchBar: true,
         isNavbar: true
+      }
+    }]
+  },
+  {
+    path: '/search',
+    component: Layout,
+    redirect: '/search',
+    children: [{
+      path: '/search',
+      component: () => import('@/views/search/index'),
+      name: 'Search',
+      meta: {
+        title: '搜索',
+        isSearchBar: true
       }
     }]
   },
@@ -74,6 +89,7 @@ const routes = [
         name: 'Rank',
         meta: {
           title: '排行',
+          isSearchBar: true,
           isNavbar: true
         }
       },
@@ -83,6 +99,7 @@ const routes = [
         name: 'RankInfo',
         meta: {
           title: '排行分类',
+          isSearchBar: true,
           isTitle: true
         }
       }
@@ -99,6 +116,7 @@ const routes = [
         name: 'plist',
         meta: {
           title: '歌单',
+          isSearchBar: true,
           isNavbar: true
         }
       },
@@ -108,6 +126,7 @@ const routes = [
         name: 'PlistInfo',
         meta: {
           title: '歌单详情',
+          isSearchBar: true,
           isTitle: true
         }
       }
@@ -124,6 +143,7 @@ const routes = [
         name: 'Singer',
         meta: {
           title: '歌手',
+          isSearchBar: true,
           isNavbar: true
         }
       },
@@ -131,7 +151,9 @@ const routes = [
         path: '/singer/info',
         component: () => import('@/views/singer/singer-info'),
         name: 'SingerInfo',
-        meta: {}
+        meta: {
+          isSearchBar: true
+        }
       },
       {
         path: '/singer/info/list',
@@ -147,7 +169,8 @@ const router = new VueRouter({
   // mode: 'history',
   mode: 'hash',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior: () => ({ y: 0 })
 })
 
 export default router

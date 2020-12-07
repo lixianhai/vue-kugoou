@@ -2,7 +2,7 @@
   <div class="app-wrapper">
     <LoadingPage v-show="isLoading" />
     <div class="fixed-top">
-      <SearchBar />
+      <SearchBar v-if="isSearchBar" />
       <Navbar v-if="isNavbar" />
       <Titlebar v-if="isTitle" />
     </div>
@@ -39,6 +39,9 @@ export default {
     key() {
       return this.$route.path
     },
+    isSearchBar() {
+      return this.$route.meta && this.$route.meta.isSearchBar
+    },
     isTitle() {
       return this.$route.meta && this.$route.meta.isTitle
     },
@@ -52,10 +55,18 @@ export default {
       return true
     },
     paddingTop() {
-      if (this.$route.meta && this.$route.meta.isNavbar) {
-        return '3.2rem'
+      if (this.isSearchBar) {
+        if (this.isNavbar) {
+          return '3.2rem'
+        } else {
+          return '1.7rem'
+        }
       } else {
-        return '1.7rem'
+        if (this.isTitle) {
+          return '1.5rem'
+        } else {
+          return '0'
+        }
       }
     },
     paddingBottom() {

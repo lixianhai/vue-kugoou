@@ -2,7 +2,7 @@
   <div class="search-bar">
     <div>热爱音乐，享受生活</div>
     <div>
-      <svg-icon icon-class="search" />
+      <svg-icon icon-class="search" @click="goSearch" />
     </div>
   </div>
 </template>
@@ -12,6 +12,11 @@ export default {
   name: 'SearchBar',
   data() {
     return {}
+  },
+  methods: {
+    goSearch() {
+      this.$router.push('/search')
+    }
   }
 }
 </script>
